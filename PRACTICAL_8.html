@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="AngularJS.js"></script>
+  <title>PRACTICAL 8</title>
+</head>
+<body ng-app="myApp" ng-controller="myctrl">
+  Choose Enrollement Number : <select ng-options="s.er for s in students" ng-model="data" ng-change="display()">
+    <option value="">--Select--</option>
+    </select>
+    
+    <p> {{name}}</p>
+    <p> {{er}}</p>
+    <p> {{city}}</p>
+    <script>
+      var app = angular.module("myApp",[]);
+      app.controller("myctrl",function($scope,$http){
+        $http.get("student.json").then(function(response){
+          $scope.students = response.data;
+        });
+
+        $scope.display = function () {
+          $scope.name = 'Name : '  + $scope.data.name ;
+          $scope.er = ' Er.No : ' + $scope.data.er;
+          $scope.city = ' CITY : ' + $scope.data.city;
+}
+      });
+    </script>
+</body>
+</html>

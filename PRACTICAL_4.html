@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRACTICAL 4</title>
+    <script src="AngularJS.js"></script>
+</head>
+<body>
+    <div ng-app="orderFormApp" ng-controller="orderFormCtrl">
+        <form>
+          <h2>Order Form</h2>
+          <div ng-repeat="product in products">
+            <label>{{product.name}}:</label>
+            <input type="number" ng-model="product.quantity" ng-change="updateTotal()"/>
+            <label>Price: {{product.price }}</label>
+          </div>
+          <hr>
+          <label>Total: {{total}}</label><br>
+          <label>GST (18%): {{total * 0.18}}</label><br>
+          <label>Final Total: {{total + (total * 0.18) }}</label>
+        </form>
+      </div>
+      <script>
+      var app = angular.module('orderFormApp', []);
+      app.controller('orderFormCtrl', function($scope) {
+        $scope.products = [
+          {name: 'Product 1', price: 499, quantity: 0},
+          {name: 'Product 2', price: 299, quantity: 0},
+          {name: 'Product 3', price: 199, quantity: 0},
+          {name: 'Product 4', price: 200, quantity: 0},
+          {name: 'Product 5', price: 500, quantity: 0}
+        ];
+        
+        $scope.updateTotal = function() {
+          $scope.total = 0;
+          angular.forEach($scope.products, function(product) {
+            $scope.total += product.price * product.quantity;
+          });
+        };
+      });
+    </script>
+</body>
+</html>

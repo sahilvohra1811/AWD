@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="AngularJS.js"></script>
+</head>
+<body>
+    <script>
+        const http = require('http');
+const fs = require('fs');
+
+const server = http.createServer(function(req, res) {
+  const url = req.url;
+
+  if (url === '/') {
+    // serve homepage
+    fs.readFile('index.html', function(err, data) {
+      if (err) {
+        res.writeHead(500, {'Content-Type': 'text/plain'});
+        res.end('Internal server error');
+      } else {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.end(data);
+      }
+    });
+  } else if (url === '/about') {
+    // serve about page
+    fs.readFile('about.html', function(err, data) {
+      if (err) {
+        res.writeHead(500, {'Content-Type': 'text/plain'});
+        res.end('Internal server error');
+      } else {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.end(data);
+      }
+    });
+  } else if (url === '/contact') {
+    // serve contact page
+    fs.readFile('contact.html', function(err, data) {
+      if (err) {
+        res.writeHead(500, {'Content-Type': 'text/plain'});
+        res.end('Internal server error');
+      } else {
+        res.writeHead(200, {'Content-Type': 'text/html'});
+        res.end(data);
+      }
+    });
+  } else {
+    // serve 404 page for unknown URLs
+    fs.readFile('404.html', function(err, data) {
+      if (err) {
+        res.writeHead(500, {'Content-Type': 'text/plain'});
+        res.end('Internal server error');
+      } else {
+        res.writeHead(404, {'Content-Type': 'text/html'});
+        res.end(data);
+      }
+    });
+  }
+});
+
+server.listen(3000, function() {
+  console.log('Server started on port 3000');
+});
+
+    </script>
+</body>
+</html>

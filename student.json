@@ -1,0 +1,23 @@
+[
+    { 
+        "name":"SAHIL", 
+        "er" :12002080701050, 
+        "city":"ANAND"
+    },
+    { 
+        "name":"KRISH", 
+        "er" :12002080701028, 
+        "city":"GANA"
+    },
+    { 
+        "name":"JAY", 
+        "er" :12002080701023, 
+        "city":"NADIAD"
+    },
+    { 
+        "name":"ARSH", 
+        "er" :12002080701034, 
+        "city":"KHAMBHAT"
+    }
+    
+]

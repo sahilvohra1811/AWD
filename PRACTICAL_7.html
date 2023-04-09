@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practial 7</title>
+    <script src="AngularJS.js"></script>
+</head>
+<body>
+    <div ng-app="myApp" ng-controller="CalcController">
+        <p>Enter Number A:  <input type="number" ng-model="a"></p>
+        <p>Enter Number B:  <input type="number" ng-model="b"></p>
+        <p><input type="button" value="Add" ng-click="add()"> <input type="button" value="Sub" ng-click="sub()"></p>
+        <p>Result: {{result}}</p>
+    </div>
+    <script>
+        var app=angular.module('myApp',[]);
+        app.controller('CalcController', function($scope, CalcService) {
+            $scope.add = function() {
+               $scope.result = CalcService.addition($scope.a,$scope.b);
+            }  
+
+            $scope.sub = function() {
+               $scope.result = CalcService.subtraction($scope.a,$scope.b);
+            }  
+         });
+
+         app.service('CalcService', function() {
+            this.addition = function(a,b) {
+               return a + b;
+            }
+
+            this.subtraction = function(a,b) {
+               return a - b;
+            }
+         });
+
+         
+    </script>
+</body>
+</html>

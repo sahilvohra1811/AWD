@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical 5</title>
+    <script src="AngularJS.js"></script>
+
+</head>
+<body>
+    <div ng-app="myApp">
+        <p>Enter the number to check whether its prime or not.</p>
+        <input type="number"  ng-model="num" required>
+        <p>The number is {{num | check}}</p>
+    </div>
+<script>
+    var app=angular.module('myApp',[]);
+app.filter('check',function(){
+    return function(x){
+        var i,flag=true;
+        var ans="";
+        if(x==null)
+            ans="";
+        else{
+            if(x==1)
+                ans="neighter prime nor a composite number."
+            else{
+                for(i=2;i<x-1;i++)
+                    if(x%i==0){
+                        flag=false;
+                        break;
+                    }
+                if(flag==true)
+                    ans="Prime";
+                else
+                    ans="Not Prime";
+                }
+        }
+        return ans;
+
+    };
+});
+
+</script>
+</body>
+</html>

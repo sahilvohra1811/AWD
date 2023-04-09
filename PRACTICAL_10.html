@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRACTICAL 10</title>
+    <script src="AngularJS.js"></script>
+</head>
+<body ng-app="app" ng-controller="ctrl" style="text-align:center">
+
+    <h1>Registration Form </h1>
+    
+    <ng-form name="myForm"> 
+
+        First name : <input type="text" name="fname" ng-model="fname" required><br>
+        <span ng-show="myForm.fname.$invalid" style="color:red">Not valid name. </span><br>
+        Last name : <input type="text" name="lname" ng-model="lname" required><br>
+        <span ng-show="myForm.lname.$invalid" style="color:red">Not valid name. </span><br>
+        E-mail : <input type="email" name="email" ng-model="email" required><br>
+        <span ng-show="myForm.email.$invalid" style="color:red">Not valid email. </span><br>
+        Mo. No : <input type="number" name="mobile" ng-model="mobile" required><br>
+        <span ng-show="myForm.mobile.$invalid" style="color:red">Not valid mobile. </span><br>
+        Choose Department : <select name="dept" ng-model="dept"required>
+            
+            <option value="INFORMATION TECHNOLOGY">INFORMATION TECHNOLOGY</option>
+            <option value="COMPUTER ENGINEERING">COMPUTER ENGINEERING</option>
+
+        </select><br>
+        <span ng-show="myForm.dept.$invalid" style="color:red">Choose Department </span><br><br>
+
+        <input type="submit" value="SUBMIT" ng-disabled="myForm.fname.$invalid || myForm.lname.$invalid || myForm.email.$invalid || myForm.mobile.$invalid || myForm.dept.$invalid">
+    </ng-form> 
+
+    <script>
+        var app = angular.module("app",[]);
+        app.controller("ctrl",function($scope){
+            $scope.pattern = /[a-zA-Z]/; 
+
+            $scope.compare = function (repass) { 
+                $scope.isconfirm = $scope.password == repass ? true : false; 
+            } 
+        })
+    </script>
+</body>
+</html>

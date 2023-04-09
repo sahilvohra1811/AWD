@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRACTICAL 12</title>
+    <script src="AngularJS.js"></script>
+</head>
+<body>
+    <div ng-app="myApp">
+        <div ng-controller="myCtrl">
+          <calculator></calculator>
+        </div>
+      </div>
+
+      <script>
+        angular.module("myApp", [])
+  .directive("calculator", function() {
+    return {
+      restrict: "E",
+      template: `
+        <div>
+          <input type="number" ng-model="number1" />
+          <select ng-model="operator">
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+          </select>
+          <input type="number" ng-model="number2" />
+          <button ng-click="calculate()">Calculate</button>
+          <br>
+          <p>Result: {{result}}</p>
+        </div>
+      `,
+      controller: function($scope) {
+        $scope.calculate = function() {
+          switch($scope.operator) {
+            case "add":
+              $scope.result = parseInt($scope.number1) + parseInt($scope.number2);
+              break;
+            case "subtract":
+              $scope.result = parseInt($scope.number1) - parseInt($scope.number2);
+              break;
+            case "multiply":
+              $scope.result = parseInt($scope.number1) * parseInt($scope.number2);
+              break;
+          }
+        }
+      }
+    };
+  })
+  .controller("myCtrl", function($scope) {});
+
+      </script>
+</body>
+</html>

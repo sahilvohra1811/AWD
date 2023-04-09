@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRACTICAL 1(2)</title>
+</head>
+<body>
+    Enter mobile number : <input type="number" id="number" onkeyup="numbercheck()">
+    <script>
+        function numbercheck(){
+            let num = document.getElementById("number").value;
+
+        if((num.length) == 10){
+            alert("Mobile number is correct.");
+        }
+        else{
+            document.getElementById("number").style.backgroundColor="red";
+        }
+        }
+        
+    </script>
+</body>
+</html>

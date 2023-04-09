@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRACTICAL 2(2)</title>
+</head>
+<body>
+	<div id="image-container">
+		<img id="image" src="21.png">
+	</div>
+	<div>
+		<label for="frequency">Frequency (in milliseconds): </label>
+		<input type="number" id="frequency" value="1000">
+		<button onclick="toggleAnimation()">Start/Stop</button>
+	</div>
+	<script>
+		var images = ["21.png", "212.png", "213.png", "214.png", "215.png"];
+		var currentIndex = 0;
+		var intervalId = null;
+		var isPlaying = false;
+		var frequencyInput = document.getElementById("frequency");
+
+		function toggleAnimation() {
+			if (isPlaying) {
+				stopAnimation();
+			} else {
+				startAnimation();
+			}
+		}
+
+		function startAnimation() {
+			intervalId = setInterval(changeImage, frequencyInput.value);
+			isPlaying = true;
+		}
+
+		function stopAnimation() {
+			clearInterval(intervalId);
+			isPlaying = false;
+		}
+
+		function changeImage() {
+			currentIndex = (currentIndex + 1) % images.length;
+			document.getElementById("image").src = images[currentIndex];
+		}
+	</script>
+</body>
+</html>

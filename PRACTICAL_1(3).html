@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRACTICAL 1(3)</title>
+</head>
+<body>
+
+    Enter Car Model Name : <input type="text" id="modelName"><br>
+    Enter Car Color : <input type="text" id="color"><br>
+    Enter Car Price : <input type="text" id="carPrice"><br>
+    <button onclick="createobj()">CREATE OBJECT</button>
+    <hr>
+    <h3>Car Object</h3>
+    <p id="obj"></p>
+    <script>
+        function createobj(){
+            var car = {
+                modelName : document.getElementById("modelName").value,
+                color : document.getElementById("color").value,
+                price : document.getElementById("carPrice").value,
+                Display : displaySpeed(50),
+                Increase : increaseSpeed(100),
+                Decrease : DecreaseSpeed(30)
+            };
+
+            document.getElementById("obj").innerHTML = "Car model Name : " + car.modelName +'<br>' + "Car color : " + car.color +'<br>'+"Car Price : "+ car.price +'<br>'+"Display speed: "+ car.Display +'<br>'+"Increased Speed : "+ car.Increase +'<br>'+"Decreased Speed : "+ car.Decrease;
+        }
+        function displaySpeed(s){
+            return s;
+        }
+        function increaseSpeed(s){
+            return s;
+        }
+        function DecreaseSpeed(s){
+            return s;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRACTICAL 3</title>
+    <style>
+        table,th,td {
+          border : 1px solid black;
+          border-collapse: collapse;
+        }
+        th,td {
+          padding: 5px;
+        }
+        </style>
+</head>
+<body>
+    <button type="button" onclick="loadDoc()">DISPLAY STUDENT DETAILS</button>
+    <br><br>
+
+    <table id="demo"></table>
+    
+    <script>
+        function loadDoc() {
+            var xhttp = new XMLHttpRequest();
+            xhttp.open("GET", "student.xml", true);
+            xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                myFunction(this);
+            }
+            };
+            xhttp.send();
+        }
+        function myFunction(xml) {
+            var i;
+            var xmlDoc = xml.responseXML;
+            var table="<tr><th>Er</th><th>Name</th></tr>";
+            var x = xmlDoc.getElementsByTagName("STUDENT");
+            for (i = 0; i <x.length; i++) {
+                var id=x[i].getElementsByTagName("ER")[0].childNodes[0].nodeValue;
+                var name=x[i].getElementsByTagName("NAME")[0].childNodes[0].nodeValue;
+                table += "<tr><td><button type='button' onclick='loadMore()'id="+id+">" +
+                id +
+                "</button></td><td>" +
+                name +
+                "</td></tr>";
+            }
+            document.getElementById("demo").innerHTML = table;
+        }
+        function loadMore() {
+            var id=event.target.id;
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                myFunction2(this,id);
+            }
+            };
+            xhttp.open("GET", "student.xml", true);
+            xhttp.send();
+        }
+        function myFunction2(xml,id) {
+            var i;
+            var xmlDoc = xml.responseXML;
+            var table="<tr><th>Er</th><th>Name</th><th>City</th><th>Address</th><th>Pincode</th></tr>";
+            var x = xmlDoc.getElementsByTagName("STUDENT");
+            for (i = 0; i <x.length; i++) {
+                var er=x[i].getElementsByTagName("ER")[0].childNodes[0].nodeValue;
+                var name=x[i].getElementsByTagName("NAME")[0].childNodes[0].nodeValue;
+                var address=x[i].getElementsByTagName("ADDRESS")[0].childNodes[0].nodeValue;
+                var city=x[i].getElementsByTagName("CITY")[0].childNodes[0].nodeValue;
+                var pin=x[i].getElementsByTagName("PINCODE")[0].childNodes[0].nodeValue;
+                if(id==er){
+                table += "<tr><td><button type='button' onclick='loadMore()'id="+id+">" +
+                er +
+                "</button></td><td>" +
+                name +
+                "</td><td>"+city+"</td><td>"+address+"</td><td>"+pin+"</td></tr>";
+                }
+            }
+            document.getElementById("demo").innerHTML = table;
+        }
+        
+    </script>
+</body>
+</html>
